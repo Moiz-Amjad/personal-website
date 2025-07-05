@@ -29,9 +29,17 @@ export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true)
   const [showContent, setShowContent] = useState(false)
   const [preloadComplete, setPreloadComplete] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  // Set mounted to true after first render
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Always scroll to top on page load/refresh
   useEffect(() => {
+    if (!mounted) return
+
     window.scrollTo(0, 0)
     
     // Disable scroll during welcome screen
@@ -44,11 +52,11 @@ export default function Home() {
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [showWelcome])
+  }, [showWelcome, mounted])
 
   // Pre-render components during welcome screen for performance
   useEffect(() => {
-    if (showWelcome) {
+    if (showWelcome && mounted) {
       // Start pre-rendering components after a short delay to let welcome screen render first
       const preloadTimer = setTimeout(() => {
         setPreloadComplete(true)
@@ -56,9 +64,11 @@ export default function Home() {
 
       return () => clearTimeout(preloadTimer)
     }
-  }, [showWelcome])
+  }, [showWelcome, mounted])
 
   const handleWelcomeComplete = () => {
+    if (!mounted) return
+
     setShowWelcome(false)
     // Enable smooth transition to main content with improved timing
     setTimeout(() => {
@@ -79,7 +89,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Pre-render components invisibly during welcome screen for performance */}
-      {showWelcome && preloadComplete && (
+      {showWelcome && preloadComplete && mounted && (
         <div 
           style={{ 
             position: 'fixed', 
@@ -121,7 +131,7 @@ export default function Home() {
 
       {/* Navigation - only show after welcome screen */}
       <AnimatePresence>
-        {!showWelcome && (
+        {!showWelcome && mounted && (
           <motion.div
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -138,7 +148,7 @@ export default function Home() {
 
       {/* Main content with improved fade-up transition */}
       <AnimatePresence>
-        {showContent && (
+        {showContent && mounted && (
           <motion.main
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -175,7 +185,7 @@ export default function Home() {
 
       {/* Footer - only show after content is loaded */}
       <AnimatePresence>
-        {showContent && (
+        {showContent && mounted && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

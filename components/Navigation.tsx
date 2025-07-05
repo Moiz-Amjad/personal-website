@@ -9,15 +9,23 @@ import { NAVIGATION_ITEMS } from '@/constants'
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme, toggleTheme } = useTheme()
 
+  // Set mounted to true after first render
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [mounted])
 
   return (
     <motion.nav
@@ -87,18 +95,21 @@ export default function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden py-4 bg-white dark:bg-black rounded-lg mt-2"
+            className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700"
           >
-            {NAVIGATION_ITEMS.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-2 px-4 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
+            <div className="flex flex-col space-y-4 pt-4">
+              {NAVIGATION_ITEMS.map((item) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         )}
       </div>

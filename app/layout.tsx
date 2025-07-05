@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ThemeProvider from '@/components/ThemeProvider'
+import ErrorBoundary from '@/components/ErrorBoundary'
 import './globals.css'
 
 const inter = Inter({ 
@@ -138,10 +139,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+        <ErrorBoundary>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </ErrorBoundary>
       </body>
     </html>
   )
