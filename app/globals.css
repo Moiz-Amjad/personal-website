@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Performance optimizations */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-display: swap;
+  }
+  
+  /* Optimize for hardware acceleration */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Improve scrolling performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce layout shifts */
+  img, video {
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Optimize focus styles for accessibility */
+  :focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  
+  :focus-visible {
+    outline: 2px solid #8B5CF6;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Utility classes */
+  .max-width {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-padding {
+    padding: 0 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .section-padding {
+      padding: 0 2rem;
+    }
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Fallback for browsers that don't support background-clip: text */
+    color: #8B5CF6;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Optimized animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 3s infinite;
+  }
+}
+
+@layer utilities {
+  /* Performance-focused utilities */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  .will-change-auto {
+    will-change: auto;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .transform-gpu {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Optimized hover states */
+  .hover-lift {
+    transition: transform 0.08s ease-out;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+  
+  .hover-scale {
+    transition: transform 0.08s ease-out;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-5px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Print styles for better performance */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .gradient-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    color: #4C1D95;
+  }
+  
+  .dark .gradient-text {
+    color: #A855F7;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+  }
+
+  .dark {
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white dark:bg-black text-black dark:text-white transition-colors duration-300;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+} 
