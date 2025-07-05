@@ -17,7 +17,7 @@ const nextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true,
     optimizePackageImports: ['lucide-react', '@react-three/drei', '@react-three/fiber'],
     turbo: {
       rules: {
