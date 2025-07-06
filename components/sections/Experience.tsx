@@ -3,11 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import LazyCanvas from '../three/LazyCanvas'
 import { Calendar, MapPin, ExternalLink, Building } from 'lucide-react'
-import OpenGLBackground from '../three/OpenGLBackground'
-import RealisticDragon from '../three/RealisticDragon'
-import FlyingObjects from '../three/FlyingObjects'
 
 const experiences = [
   {
@@ -140,28 +136,10 @@ export default function Experience() {
   return (
     <section 
       id="experience" 
-      className="py-20 section-padding relative overflow-hidden"
+      className="py-20 section-padding relative overflow-hidden bg-transparent"
       aria-labelledby="experience-heading"
       role="region"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-        <LazyCanvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={0.6} />
-          <OpenGLBackground variant="waves" intensity={0.3} />
-          <RealisticDragon position={[4, -1, -3]} scale={0.18} speed={0.7} />
-          <FlyingObjects count={5} variant="orbs" speed={0.5} />
-        </LazyCanvas>
-      </div>
-
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-16 left-16 w-28 h-28 bg-purple-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-16 right-16 w-36 h-36 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-2/3 left-1/3 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
-      </div>
-
       <div className="max-width relative z-10">
         <motion.div
           ref={ref}
@@ -176,7 +154,7 @@ export default function Experience() {
           >
             Professional Experience
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto glass-text-light">
             A journey through my professional growth, showcasing the roles and projects that have 
             shaped my expertise in software development.
           </p>

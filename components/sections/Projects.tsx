@@ -2,11 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import LazyCanvas from '../three/LazyCanvas'
 import { ExternalLink, Github, Sparkles, Bot, Calculator, Users, MessageCircle, DollarSign, Receipt } from 'lucide-react'
-import OpenGLBackground from '../three/OpenGLBackground'
-import RealisticDragon from '../three/RealisticDragon'
-import FlyingObjects from '../three/FlyingObjects'
 
 const projects = [
   {
@@ -44,28 +40,10 @@ export default function Projects() {
   return (
     <section 
       id="projects" 
-      className="py-20 section-padding relative overflow-hidden"
+      className="py-20 section-padding relative overflow-hidden bg-transparent"
       aria-labelledby="projects-heading"
       role="region"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-25" aria-hidden="true">
-        <LazyCanvas camera={{ position: [0, 0, 12], fov: 45 }}>
-          <ambientLight intensity={0.3} />
-          <directionalLight position={[8, 8, 5]} intensity={0.7} />
-          <OpenGLBackground variant="waves" intensity={0.4} />
-          <RealisticDragon position={[-5, 3, -2]} scale={0.25} speed={0.9} />
-          <RealisticDragon position={[7, -2, 1]} scale={0.2} speed={0.7} />
-          <FlyingObjects count={6} variant="orbs" speed={0.8} />
-        </LazyCanvas>
-      </div>
-
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-
       <div className="max-width relative z-10">
         <motion.div
           ref={ref}
@@ -86,7 +64,7 @@ export default function Projects() {
             <h2 id="projects-heading" className="text-3xl md:text-4xl font-bold gradient-text">
               Featured Projects
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mt-4">
+            <p className="text-gray-700 dark:text-gray-300 mt-4 glass-text-light">
               A showcase of my recent work and creative solutions
             </p>
           </div>
@@ -101,7 +79,7 @@ export default function Projects() {
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   whileHover={{ y: -3, scale: 1.005 }}
-                  className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-100 border border-gray-300 dark:border-gray-600 focus-within:ring-2 focus-within:ring-purple-500 focus-within:ring-offset-2"
+                  className="group glass-card rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-100 focus-within:ring-2 focus-within:ring-purple-500 focus-within:ring-offset-2"
                   role="article"
                   aria-labelledby={`project-title-${index}`}
                 >

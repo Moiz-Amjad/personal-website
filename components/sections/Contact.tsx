@@ -94,7 +94,7 @@ export default function Contact() {
   return (
     <section 
       id="contact" 
-      className="py-20 section-padding bg-gray-50 dark:bg-gray-900/50"
+      className="relative py-20 section-padding bg-transparent"
       aria-labelledby="contact-heading"
       role="region"
     >
@@ -109,11 +109,11 @@ export default function Contact() {
           <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900 dark:text-gray-100">
             Get In Touch
           </h2>
-          <p className="text-center text-gray-800 dark:text-gray-300 mb-12 text-lg font-medium">
+          <p className="text-center text-gray-800 dark:text-gray-300 mb-12 text-lg font-medium glass-text-light">
             Have a question or want to work together? Feel free to reach out!
           </p>
           
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-300 dark:border-gray-600">
+          <div className="glass-card p-8 rounded-xl shadow-lg">
             <div className="text-center mb-6">
               <a 
                 href="mailto:moiz.amjad37@gmail.com" 

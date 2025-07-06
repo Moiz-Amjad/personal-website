@@ -2,11 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import LazyCanvas from '../three/LazyCanvas'
 import { GraduationCap, Award, BookOpen, Trophy, Star, Medal, Crown } from 'lucide-react'
-import OpenGLBackground from '../three/OpenGLBackground'
-import RealisticDragon from '../three/RealisticDragon'
-import FlyingObjects from '../three/FlyingObjects'
 
 const awards = [
   {
@@ -48,28 +44,10 @@ export default function Education() {
   return (
     <section 
       id="education" 
-      className="py-20 section-padding relative overflow-hidden"
+      className="py-20 section-padding relative overflow-hidden bg-transparent"
       aria-labelledby="education-heading"
       role="region"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-30" aria-hidden="true">
-        <LazyCanvas camera={{ position: [0, 0, 8], fov: 60 }}>
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={0.6} />
-          <OpenGLBackground variant="geometric" intensity={0.3} />
-          <RealisticDragon position={[4, 2, -1]} scale={0.15} speed={0.6} />
-          <FlyingObjects count={8} variant="mixed" speed={0.5} />
-        </LazyCanvas>
-      </div>
-
-      {/* Floating elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-16 h-16 bg-purple-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-indigo-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
-      </div>
-
       <div className="max-width relative z-10">
         <motion.div
           ref={ref}
@@ -90,7 +68,7 @@ export default function Education() {
             <h2 id="education-heading" className="text-3xl md:text-4xl font-bold gradient-text">
               Education & Achievements
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mt-4">
+            <p className="text-gray-700 dark:text-gray-300 mt-4 glass-text-light">
               Academic journey and recognition
             </p>
           </div>
@@ -102,7 +80,7 @@ export default function Education() {
               animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-80 border border-gray-300 dark:border-gray-600 group relative overflow-hidden"
+              className="glass-card p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-80 group relative overflow-hidden"
               role="article"
               aria-labelledby="education-title"
             >
@@ -158,7 +136,7 @@ export default function Education() {
               animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-80 border border-gray-300 dark:border-gray-600 group relative overflow-hidden"
+              className="glass-card p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-80 group relative overflow-hidden"
               role="article"
               aria-labelledby="awards-title"
             >
@@ -247,7 +225,7 @@ export default function Education() {
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ duration: 0.08 }}
-              className="text-center p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-80 group"
+              className="text-center p-6 glass-card rounded-xl hover:shadow-lg transition-all duration-80 group"
             >
               <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="3.7 GPA">
                 3.7
@@ -257,7 +235,7 @@ export default function Education() {
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ duration: 0.08 }}
-              className="text-center p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-80 group"
+              className="text-center p-6 glass-card rounded-xl hover:shadow-lg transition-all duration-80 group"
             >
               <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="4 scholarships">
                 4
@@ -267,7 +245,7 @@ export default function Education() {
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ duration: 0.08 }}
-              className="text-center p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-80 group"
+              className="text-center p-6 glass-card rounded-xl hover:shadow-lg transition-all duration-80 group"
             >
               <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="Graduation year 2026">
                 2026
@@ -277,7 +255,7 @@ export default function Education() {
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ duration: 0.08 }}
-              className="text-center p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-80 group"
+              className="text-center p-6 glass-card rounded-xl hover:shadow-lg transition-all duration-80 group"
             >
               <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="Computer Science Honors">
                 CS

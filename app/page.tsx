@@ -74,7 +74,7 @@ export default function Home() {
     setTimeout(() => {
       setShowContent(true)
       document.body.style.overflow = 'unset'
-    }, 150)
+    }, 800) // Increased delay to ensure proper transition
   }
 
   return (
@@ -89,7 +89,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Pre-render components invisibly during welcome screen for performance */}
-      {showWelcome && preloadComplete && mounted && (
+      {false && (
         <div 
           style={{ 
             position: 'fixed', 
@@ -104,7 +104,7 @@ export default function Home() {
           <Navigation />
           <main>
             <Suspense fallback={<SectionLoader />}>
-              <Hero />
+              <Hero preload />
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
               <About />

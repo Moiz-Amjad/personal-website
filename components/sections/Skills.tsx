@@ -3,11 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import LazyCanvas from '../three/LazyCanvas'
 import { Code, Database, Server, Smartphone, Cloud, Zap } from 'lucide-react'
-import OpenGLBackground from '../three/OpenGLBackground'
-import RealisticDragon from '../three/RealisticDragon'
-import FlyingObjects from '../three/FlyingObjects'
 import { useTheme } from '../ThemeProvider'
 
 const skillCategories = [
@@ -116,28 +112,10 @@ export default function Skills() {
   return (
     <section 
       id="skills" 
-      className="py-20 section-padding relative overflow-hidden"
+      className="py-20 section-padding relative overflow-hidden bg-transparent"
       aria-labelledby="skills-heading"
       role="region"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-        <LazyCanvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={0.6} />
-          <OpenGLBackground variant="geometric" intensity={0.4} />
-          <RealisticDragon position={[-5, 1, -3]} scale={0.15} speed={0.5} />
-          <FlyingObjects count={6} variant="geometric" speed={0.4} />
-        </LazyCanvas>
-      </div>
-
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 right-20 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-indigo-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
-      </div>
-
       <div className="max-width relative z-10">
         <motion.div
           ref={ref}
@@ -152,7 +130,7 @@ export default function Skills() {
           >
             Technical Skills
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto glass-text-light">
             A comprehensive toolkit of modern technologies and frameworks I use to build scalable, 
             performant applications across the full stack.
           </p>

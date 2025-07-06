@@ -78,6 +78,20 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
+  /* Semi-transparent card used across light & dark themes */
+  .glass-card {
+    @apply backdrop-blur-lg rounded-xl border transition-colors duration-300;
+    /* Light mode */
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.4);
+
+  }
+
+  .dark .glass-card {
+    background: rgba(17, 24, 39, 0.6); /* gray-900 with opacity */
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
   /* Optimized animations */
   .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -250,4 +264,44 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-500 dark:bg-gray-500;
+}
+
+/* Glass background for secondary texts - light mode only */
+.glass-text-light {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+}
+
+.dark .glass-text-light {
+  display: block;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  padding: 0;
+}
+
+.dark .glow-light {
+  text-shadow: none;
+}
+
+/* Animation utilities */
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 } 

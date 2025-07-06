@@ -3,11 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
-import LazyCanvas from '../three/LazyCanvas'
 import { Github, Linkedin, Code, Coffee, Rocket } from 'lucide-react'
-import OpenGLBackground from '../three/OpenGLBackground'
-import RealisticDragon from '../three/RealisticDragon'
-import FlyingObjects from '../three/FlyingObjects'
 
 export default function About() {
   const [ref, inView] = useInView({
@@ -18,28 +14,10 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="py-20 section-padding relative overflow-hidden"
+      className="py-20 section-padding relative overflow-hidden bg-transparent"
       aria-labelledby="about-heading"
       role="region"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-        <LazyCanvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={0.6} />
-          <OpenGLBackground variant="minimal" intensity={0.3} />
-          <RealisticDragon position={[6, 2, -4]} scale={0.2} speed={0.6} />
-          <FlyingObjects count={4} variant="butterflies" speed={0.3} />
-        </LazyCanvas>
-      </div>
-
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-purple-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-indigo-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
-      </div>
-
       <div className="max-width relative z-10">
         <motion.div
           ref={ref}
@@ -95,7 +73,7 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <motion.p 
-                className="text-lg text-gray-800 dark:text-gray-300 mb-6 leading-relaxed"
+                className="glass-card p-6 text-lg text-gray-800 dark:text-gray-300 mb-6 leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -106,7 +84,7 @@ export default function About() {
               </motion.p>
               
               <motion.p 
-                className="text-lg text-gray-800 dark:text-gray-300 mb-8 leading-relaxed"
+                className="glass-card p-6 text-lg text-gray-800 dark:text-gray-300 mb-8 leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -127,7 +105,7 @@ export default function About() {
               >
                 <h3 id="stats-heading" className="sr-only">Professional Statistics</h3>
                 <motion.div 
-                  className="text-center p-4 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-lg border border-purple-200 dark:border-purple-800 hover:shadow-lg transition-shadow duration-300"
+                  className="text-center p-4 glass-card rounded-lg hover:shadow-lg transition-shadow duration-300"
                   whileHover={{ scale: 1.05, y: -2 }}
                   tabIndex={0}
                   role="group"
@@ -138,7 +116,7 @@ export default function About() {
                   <div id="projects-stat" className="text-sm text-gray-700 dark:text-gray-300 font-medium">Projects</div>
                 </motion.div>
                 <motion.div 
-                  className="text-center p-4 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-lg border border-blue-200 dark:border-blue-800 hover:shadow-lg transition-shadow duration-300"
+                  className="text-center p-4 glass-card rounded-lg hover:shadow-lg transition-shadow duration-300"
                   whileHover={{ scale: 1.05, y: -2 }}
                   tabIndex={0}
                   role="group"
@@ -149,7 +127,7 @@ export default function About() {
                   <div id="experience-stat" className="text-sm text-gray-700 dark:text-gray-300 font-medium">Years Experience</div>
                 </motion.div>
                 <motion.div 
-                  className="text-center p-4 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:shadow-lg transition-shadow duration-300"
+                  className="text-center p-4 glass-card rounded-lg hover:shadow-lg transition-shadow duration-300"
                   whileHover={{ scale: 1.05, y: -2 }}
                   tabIndex={0}
                   role="group"
