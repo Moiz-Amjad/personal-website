@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import WelcomeScreen from '@/components/WelcomeScreen'
 
-// Lazy load heavy components with different priorities
+// Lazy load heavy components
 const Hero = lazy(() => import('@/components/sections/Hero'))
 const About = lazy(() => import('@/components/sections/About'))
 const Experience = lazy(() => import('@/components/sections/Experience'))
@@ -25,35 +25,11 @@ const SectionLoader = ({ height = "100vh" }: { height?: string }) => (
   </div>
 )
 
-// Progressive loading component wrapper
-const ProgressiveSection = ({ 
-  children, 
-  isLoaded, 
-  fallback = <SectionLoader /> 
-}: { 
-  children: React.ReactNode
-  isLoaded: boolean
-  fallback?: React.ReactNode
-}) => {
-  if (!isLoaded) return fallback
-  return <>{children}</>
-}
-
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true)
   const [showContent, setShowContent] = useState(false)
+  const [preloadComplete, setPreloadComplete] = useState(false)
   const [mounted, setMounted] = useState(false)
-  
-  // Progressive loading states for each section
-  const [loadedSections, setLoadedSections] = useState({
-    hero: false,
-    about: false,
-    experience: false,
-    projects: false,
-    skills: false,
-    education: false,
-    contact: false
-  })
 
   // Set mounted to true after first render
   useEffect(() => {
@@ -78,68 +54,17 @@ export default function Home() {
     }
   }, [showWelcome, mounted])
 
-  // Progressive loading strategy
+  // Pre-render components during welcome screen for performance
   useEffect(() => {
-    if (!showContent || !mounted) return
+    if (showWelcome && mounted) {
+      // Start pre-rendering components after a short delay to let welcome screen render first
+      const preloadTimer = setTimeout(() => {
+        setPreloadComplete(true)
+      }, 1000) // Start preloading 1 second into welcome screen
 
-    const loadSections = async () => {
-      const delays = {
-        hero: 0,      // Load immediately
-        about: 800,   // Load after 800ms
-        experience: 1600, // Load after 1.6s
-        projects: 2400,   // Load after 2.4s
-        skills: 3200,     // Load after 3.2s
-        education: 4000,  // Load after 4s
-        contact: 4800     // Load after 4.8s
-      }
-
-      // Load sections progressively
-      Object.entries(delays).forEach(([section, delay]) => {
-        setTimeout(() => {
-          setLoadedSections(prev => ({
-            ...prev,
-            [section]: true
-          }))
-        }, delay)
-      })
+      return () => clearTimeout(preloadTimer)
     }
-
-    loadSections()
-  }, [showContent, mounted])
-
-  // Intersection observer for on-demand loading (fallback for slow connections)
-  useEffect(() => {
-    if (!mounted || !showContent) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id
-            if (sectionId && !loadedSections[sectionId as keyof typeof loadedSections]) {
-              setLoadedSections(prev => ({
-                ...prev,
-                [sectionId]: true
-              }))
-            }
-          }
-        })
-      },
-      {
-        rootMargin: '100px', // Load when section is 100px away from viewport
-        threshold: 0.1
-      }
-    )
-
-    // Observe section containers
-    const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
-    sections.forEach(section => {
-      const element = document.getElementById(section)
-      if (element) observer.observe(element)
-    })
-
-    return () => observer.disconnect()
-  }, [showContent, mounted, loadedSections])
+  }, [showWelcome, mounted])
 
   const handleWelcomeComplete = () => {
     if (!mounted) return
@@ -163,6 +88,47 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* Pre-render components invisibly during welcome screen for performance */}
+      {showWelcome && preloadComplete && mounted && (
+        <div 
+          style={{ 
+            position: 'fixed', 
+            top: '-9999px', 
+            left: '-9999px', 
+            visibility: 'hidden',
+            pointerEvents: 'none',
+            zIndex: -1000
+          }}
+          aria-hidden="true"
+        >
+          <Navigation />
+          <main>
+            <Suspense fallback={<SectionLoader />}>
+              <Hero />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <About />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Experience />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Projects />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Skills />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Education />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Contact />
+            </Suspense>
+          </main>
+          <Footer />
+        </div>
+      )}
+
       {/* Navigation - only show after welcome screen */}
       <AnimatePresence>
         {!showWelcome && mounted && (
@@ -180,7 +146,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Main content with progressive loading */}
+      {/* Main content with improved fade-up transition */}
       <AnimatePresence>
         {showContent && mounted && (
           <motion.main
@@ -192,75 +158,34 @@ export default function Home() {
               delay: 0.1
             }}
           >
-            {/* Hero Section - Loads first */}
-            <div id="hero">
-              <ProgressiveSection isLoaded={loadedSections.hero}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Hero />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
-
-            {/* About Section */}
-            <div id="about">
-              <ProgressiveSection isLoaded={loadedSections.about}>
-                <Suspense fallback={<SectionLoader />}>
-                  <About />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
-
-            {/* Experience Section */}
-            <div id="experience">
-              <ProgressiveSection isLoaded={loadedSections.experience}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Experience />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
-
-            {/* Projects Section */}
-            <div id="projects">
-              <ProgressiveSection isLoaded={loadedSections.projects}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Projects />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
-
-            {/* Skills Section */}
-            <div id="skills">
-              <ProgressiveSection isLoaded={loadedSections.skills}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Skills />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
-
-            {/* Education Section */}
-            <div id="education">
-              <ProgressiveSection isLoaded={loadedSections.education}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Education />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
-
-            {/* Contact Section */}
-            <div id="contact">
-              <ProgressiveSection isLoaded={loadedSections.contact}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Contact />
-                </Suspense>
-              </ProgressiveSection>
-            </div>
+            <Suspense fallback={<SectionLoader />}>
+              <Hero />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <About />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Experience />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Projects />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Skills />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Education />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Contact />
+            </Suspense>
           </motion.main>
         )}
       </AnimatePresence>
 
       {/* Footer - only show after content is loaded */}
       <AnimatePresence>
-        {showContent && mounted && loadedSections.contact && (
+        {showContent && mounted && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

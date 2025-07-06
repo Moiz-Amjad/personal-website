@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Canvas } from '@react-three/fiber'
+import LazyCanvas from '../three/LazyCanvas'
 import { GraduationCap, Award, BookOpen, Trophy, Star, Medal, Crown } from 'lucide-react'
 import OpenGLBackground from '../three/OpenGLBackground'
 import RealisticDragon from '../three/RealisticDragon'
@@ -54,13 +54,13 @@ export default function Education() {
     >
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-30" aria-hidden="true">
-        <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+        <LazyCanvas camera={{ position: [0, 0, 8], fov: 60 }}>
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 5, 5]} intensity={0.6} />
           <OpenGLBackground variant="geometric" intensity={0.3} />
           <RealisticDragon position={[4, 2, -1]} scale={0.15} speed={0.6} />
           <FlyingObjects count={8} variant="mixed" speed={0.5} />
-        </Canvas>
+        </LazyCanvas>
       </div>
 
       {/* Floating elements */}

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
-import { Canvas } from '@react-three/fiber'
+import LazyCanvas from '../three/LazyCanvas'
 import { Github, Linkedin, Code, Coffee, Rocket } from 'lucide-react'
 import OpenGLBackground from '../three/OpenGLBackground'
 import RealisticDragon from '../three/RealisticDragon'
@@ -24,13 +24,13 @@ export default function About() {
     >
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+        <LazyCanvas camera={{ position: [0, 0, 10], fov: 50 }}>
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 5, 5]} intensity={0.6} />
           <OpenGLBackground variant="minimal" intensity={0.3} />
           <RealisticDragon position={[6, 2, -4]} scale={0.2} speed={0.6} />
           <FlyingObjects count={4} variant="butterflies" speed={0.3} />
-        </Canvas>
+        </LazyCanvas>
       </div>
 
       {/* Background Elements */}

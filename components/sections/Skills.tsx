@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Canvas } from '@react-three/fiber'
+import LazyCanvas from '../three/LazyCanvas'
 import { Code, Database, Server, Smartphone, Cloud, Zap } from 'lucide-react'
 import OpenGLBackground from '../three/OpenGLBackground'
 import RealisticDragon from '../three/RealisticDragon'
@@ -74,31 +74,42 @@ export default function Skills() {
     setHoveredSkills(new Set())
   }, [theme, mounted])
 
+  const applyHoverStyles = (el: HTMLElement) => {
+    el.style.backgroundColor = theme === 'dark' ? '#8B5CF6' : '#A855F7'
+    el.style.color = '#FFFFFF'
+    el.style.transform = 'scale(1.05)'
+    el.classList.add('animate-pulse')
+  }
+
+  const resetStyles = (el: HTMLElement) => {
+    el.style.backgroundColor = ''
+    el.style.color = ''
+    el.style.transform = ''
+    el.classList.remove('animate-pulse')
+  }
+
   const handleSkillHover = (skill: string) => {
     if (!mounted) return
-    
+
     setHoveredSkills(prev => new Set(prev).add(skill))
     const element = document.querySelector(`[data-skill-tag][data-skill="${skill}"]`) as HTMLElement
-    if (element) {
-      element.style.backgroundColor = theme === 'dark' ? '#8B5CF6' : '#A855F7'
-      element.style.color = '#FFFFFF'
-      element.style.transform = 'scale(1.05)'
-    }
+    if (element) applyHoverStyles(element)
   }
 
   const handleSkillLeave = (skill: string) => {
     if (!mounted) return
-    
-    setHoveredSkills(prev => {
-      const newSet = new Set(prev)
-      newSet.delete(skill)
-      return newSet
-    })
+
     const element = document.querySelector(`[data-skill-tag][data-skill="${skill}"]`) as HTMLElement
     if (element) {
-      element.style.backgroundColor = ''
-      element.style.color = ''
-      element.style.transform = ''
+      // keep blink for 1.5s then reset
+      setTimeout(() => {
+        resetStyles(element)
+        setHoveredSkills(prev => {
+          const newSet = new Set(prev)
+          newSet.delete(skill)
+          return newSet
+        })
+      }, 1500)
     }
   }
 
@@ -111,13 +122,13 @@ export default function Skills() {
     >
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+        <LazyCanvas camera={{ position: [0, 0, 10], fov: 50 }}>
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 5, 5]} intensity={0.6} />
           <OpenGLBackground variant="geometric" intensity={0.4} />
           <RealisticDragon position={[-5, 1, -3]} scale={0.15} speed={0.5} />
           <FlyingObjects count={6} variant="geometric" speed={0.4} />
-        </Canvas>
+        </LazyCanvas>
       </div>
 
       {/* Background Elements */}

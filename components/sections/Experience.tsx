@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Canvas } from '@react-three/fiber'
+import LazyCanvas from '../three/LazyCanvas'
 import { Calendar, MapPin, ExternalLink, Building } from 'lucide-react'
 import OpenGLBackground from '../three/OpenGLBackground'
 import RealisticDragon from '../three/RealisticDragon'
@@ -11,40 +11,65 @@ import FlyingObjects from '../three/FlyingObjects'
 
 const experiences = [
   {
-    title: 'Software Engineer',
-    company: 'Tech Solutions Inc.',
-    location: 'Boston, MA',
-    period: '2023 - Present',
-    description: 'Led development of scalable web applications using React, Node.js, and AWS. Implemented microservices architecture and improved system performance by 40%.',
-    technologies: ['React', 'Node.js', 'AWS', 'MongoDB', 'TypeScript'],
-    link: 'https://techsolutions.com'
-  },
-  {
-    title: 'Full Stack Developer',
-    company: 'StartupXYZ',
-    location: 'Cambridge, MA',
-    period: '2022 - 2023',
-    description: 'Built and maintained multiple client projects using modern web technologies. Collaborated with cross-functional teams to deliver high-quality software solutions.',
-    technologies: ['Next.js', 'Python', 'PostgreSQL', 'Docker', 'GraphQL'],
-    link: 'https://startupxyz.com'
-  },
-  {
-    title: 'Junior Developer',
-    company: 'Digital Agency',
-    location: 'Boston, MA',
-    period: '2021 - 2022',
-    description: 'Developed responsive web applications and helped optimize existing codebases. Gained experience in agile development methodologies and version control.',
-    technologies: ['JavaScript', 'React', 'CSS3', 'MySQL', 'Git'],
-    link: 'https://digitalagency.com'
-  },
-  {
     title: 'Software Engineering Intern',
-    company: 'Innovation Labs',
+    company: 'Software Application & Innovation Lab – Boston University',
     location: 'Boston, MA',
-    period: '2021',
-    description: 'Contributed to open-source projects and learned best practices in software development. Participated in code reviews and team meetings.',
-    technologies: ['Python', 'Django', 'SQLite', 'HTML5', 'CSS3'],
-    link: 'https://innovationlabs.com'
+    period: 'May 2025 – Present',
+    description: [
+      "Modernized BU's web presence by implementing Figma mock-ups into responsive, reusable WordPress components, resulting in a cohesive, faster-loading user experience and reduced development time."
+    ],
+    technologies: ['WordPress', 'PHP', 'Figma', 'JavaScript', 'CSS'],
+    link: 'https://www.bu.edu/sail/'
+  },
+  {
+    title: 'IT Systems & Support Analyst',
+    company: 'University of Massachusetts Boston',
+    location: 'Boston, MA',
+    period: 'Jan 2025 – Present',
+    description: [
+      "Increased user satisfaction and service reliability by triaging 100+ ServiceNow requests and resolving 50+ hardware, software, and system issues, reducing downtime.",
+      "Ensured data integrity and security by managing 200+ student and faculty accounts across multiple systems and educating users on phishing prevention, leading to a 10 % reduction in incidents."
+    ],
+    technologies: ['Bash', 'Python', 'ServiceNow', 'Azure AD'],
+    link: 'https://umb.edu'
+  },
+  {
+    title: 'Software Engineering Fellow',
+    company: 'Headstarter AI',
+    location: 'Remote',
+    period: 'Jul 2024 – Sep 2024',
+    description: [
+      "Led development of 5 AI-driven web applications in 5 weeks, scaling them to 50+ users with a focus on performance optimisation and engagement.",
+      "Integrated a RAG pipeline (OpenAI + Pinecone) to power customer-support agents, reducing manual query resolution time by 25 %.",
+      "Collaborated with 3 engineers to launch a SaaS product generating dynamic flashcards, boosting engagement by 15 %."
+    ],
+    technologies: ['Next.js', 'LangChain', 'OpenAI API', 'Pinecone'],
+    link: 'https://headstarter.ai'
+  },
+  {
+    title: 'Software Engineer Intern',
+    company: 'Devsinc',
+    location: 'Remote',
+    period: 'Summer 2022',
+    description: [
+      "Optimised an expense-management platform front-end (React), reducing page-load time by 26 %.",
+      "Built a custom hash-table implementation, improving data retrieval speed by 40 %.",
+      "Applied the Factory Design Pattern to standardise UI components, cutting code redundancy by 30 % and improving scalability."
+    ],
+    technologies: ['React', 'Node.js', 'PostgreSQL', 'Jest'],
+    link: 'https://devsinc.com'
+  },
+  {
+    title: 'Software Engineering Supplemental Instructor',
+    company: 'University of Massachusetts Boston',
+    location: 'Boston, MA',
+    period: 'Sep 2022 – Dec 2022',
+    description: [
+      'Delivered four weekly supplemental instruction sessions to 30 students, improving course grades by 15 % in Python, OOP and Data Structures.',
+      'Provided personalised feedback on assignments, enabling students to resolve 80 % of coding errors independently.'
+    ],
+    technologies: ['Python', 'Teaching', 'OOP', 'Data Structures'],
+    link: 'https://umb.edu'
   }
 ]
 
@@ -121,13 +146,13 @@ export default function Experience() {
     >
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+        <LazyCanvas camera={{ position: [0, 0, 10], fov: 50 }}>
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 5, 5]} intensity={0.6} />
           <OpenGLBackground variant="waves" intensity={0.3} />
           <RealisticDragon position={[4, -1, -3]} scale={0.18} speed={0.7} />
           <FlyingObjects count={5} variant="orbs" speed={0.5} />
-        </Canvas>
+        </LazyCanvas>
       </div>
 
       {/* Background Elements */}
@@ -213,9 +238,11 @@ export default function Experience() {
                     <span>{experience.location}</span>
                   </div>
 
-                  <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                    {experience.description}
-                  </p>
+                  <ul className="list-disc ml-5 text-gray-700 dark:text-gray-300 mb-4 space-y-1">
+                    {experience.description.map((d,i)=>(
+                      <li key={i}>{d}</li>
+                    ))}
+                  </ul>
 
                   <div className="flex flex-wrap gap-2">
                     {experience.technologies.map((tech) => (
