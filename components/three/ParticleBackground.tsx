@@ -12,7 +12,7 @@ export default function ParticleBackground() {
   const positions = useMemo(() => {
     const positions = new Float32Array(particlesCount * 3)
     for (let i = 0; i < particlesCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 10
+      positions[i] = (Math.random() - 0.5) * 20
     }
     return positions
   }, [particlesCount])

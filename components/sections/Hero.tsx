@@ -33,26 +33,26 @@ export default function Hero({ preload = false }: HeroProps) {
           <pointLight position={[-10, -10, -5]} intensity={0.5} color="#8B5CF6" />
           
           {/* OpenGL Background */}
-          <OpenGLBackground variant="particles" intensity={0.4} />
+          <OpenGLBackground variant="particles" intensity={0.5} />
           
           {/* Original elements */}
           <ParticleBackground />
-          <Sphere args={[1, 100, 200]} scale={1.8} position={[2.5, 0, -6]}>
+          <Sphere args={[1, 100, 200]} scale={1.8} position={[2.5, 0, 3]}>
             <MeshDistortMaterial
               color="#3B82F6"
               attach="material"
-              distort={0.5}
-              speed={2}
+              distort={0.4}
+              speed={4}
               roughness={0}
               opacity={0.8}
               transparent
             />
           </Sphere>
-          <Sphere args={[1, 100, 200]} scale={1.5} position={[-3, 1, -2]}>
+          <Sphere args={[1, 100, 200]} scale={1.5} position={[-3, 1, 2]}>
             <MeshDistortMaterial
               color="#8B5CF6"
               attach="material"
-              distort={0.3}
+              distort={0.5}
               speed={3}
               roughness={0}
               opacity={0.6}
