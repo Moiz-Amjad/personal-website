@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ThemeProvider from '@/components/ThemeProvider'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import { Analytics } from "@vercel/analytics/next"
 import './globals.css'
 
 const inter = Inter({ 
@@ -143,6 +144,7 @@ export default function RootLayout({
         <ErrorBoundary>
           <ThemeProvider>
             {children}
+            <Analytics />
           </ThemeProvider>
         </ErrorBoundary>
       </body>
