@@ -10,32 +10,32 @@ const skillCategories = [
   {
     icon: Code,
     title: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Framer Motion']
+    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind', 'Material UI', 'Framer Motion', 'Three.js']
   },
   {
     icon: Server,
     title: 'Backend',
-    skills: ['Node.js', 'Express', 'Python', 'Django', 'FastAPI', 'REST APIs', 'GraphQL', 'Microservices']
+    skills: ['Node.js', 'Firebase', 'Python', 'C', 'TypeScript', 'JavaScript', 'REST APIs', 'CRUD', 'Factory Design Patterns']
   },
   {
     icon: Database,
     title: 'Database',
-    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'MySQL', 'Prisma', 'Supabase', 'Firebase', 'DynamoDB']
+    skills: ['PostgreSQL', 'MySQL', 'Supabase', 'Google Cloud Firebase', 'Pinecone']
   },
   {
     icon: Cloud,
     title: 'Cloud & DevOps',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Vercel', 'Netlify', 'GitHub Actions', 'Terraform']
+    skills: ['AWS', 'GCP', 'Azure', 'Docker', 'Kubernetes', 'CI/CD', 'Vercel', 'Netlify', 'GitHub Actions']
   },
   {
     icon: Smartphone,
     title: 'Mobile',
-    skills: ['React Native', 'Flutter', 'iOS', 'Android', 'Expo', 'PWA', 'Responsive Design']
+    skills: ['React Native', 'Flutter', 'Swift']
   },
   {
     icon: Zap,
     title: 'AI/ML',
-    skills: ['Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'OpenAI API', 'Computer Vision', 'NLP']
+    skills: ['LangFlow', 'LangFuse', 'LangChain','RAG Pipeline', 'OpenAI API', 'LiteLLM']
   }
 ]
 

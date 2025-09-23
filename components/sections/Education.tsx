@@ -121,7 +121,7 @@ export default function Education() {
                     <div className="flex items-center justify-between bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg p-3 border border-gray-300 dark:border-gray-600">
                       <span className="font-medium text-gray-800 dark:text-gray-200">GPA:</span>
                       <div className="flex items-center">
-                        <span className="text-2xl font-bold gradient-text">3.7</span>
+                        <span className="text-2xl font-bold gradient-text">3.8</span>
                         <span className="text-gray-700 dark:text-gray-300 ml-1">/4.0</span>
                       </div>
                     </div>
@@ -227,8 +227,8 @@ export default function Education() {
               transition={{ duration: 0.08 }}
               className="text-center p-6 glass-card rounded-xl hover:shadow-lg transition-all duration-80 group"
             >
-              <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="3.7 GPA">
-                3.7
+              <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="3.8 GPA">
+                3.8
               </div>
               <div className="text-sm text-gray-700 dark:text-gray-300 font-medium">GPA</div>
             </motion.div>
@@ -248,7 +248,7 @@ export default function Education() {
               className="text-center p-6 glass-card rounded-xl hover:shadow-lg transition-all duration-80 group"
             >
               <div className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-80" aria-label="Graduation year 2026">
-                2026
+                May 2026
               </div>
               <div className="text-sm text-gray-700 dark:text-gray-300 font-medium">Graduation</div>
             </motion.div>
