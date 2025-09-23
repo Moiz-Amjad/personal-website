@@ -10,11 +10,13 @@ const experiences = [
     title: 'Software Engineering Intern',
     company: 'Software Application & Innovation Lab – Boston University',
     location: 'Boston, MA',
-    period: 'May 2025 – Present',
+    period: 'Feb 2025 – Aug 2025',
     description: [
+      "Built an Admin dashboard using Next.js + TypeScript to manage LLM models and proxies, configuring Langflow pipelines and registering them in LiteLLM, reducing model onboarding time from hrs to mins.",
+      "Developed a chat platform (SPA + embeddable widget) with React and integrated Langfuse tracing into AI pipelines, improving observability & cutting debugging time by 30%.",
       "Modernized BU's web presence by implementing Figma mock-ups into responsive, reusable WordPress components, resulting in a cohesive, faster-loading user experience and reduced development time."
     ],
-    technologies: ['WordPress', 'PHP', 'Figma', 'JavaScript', 'CSS'],
+    technologies: ['LangFlow', 'LangChain', 'LangFuse', 'Docker', 'Next.js', 'Node.js', 'React', 'Figma', 'JavaScript', 'WordPress'],
     link: 'https://www.bu.edu/sail/'
   },
   {
@@ -39,32 +41,32 @@ const experiences = [
       "Integrated a RAG pipeline (OpenAI + Pinecone) to power customer-support agents, reducing manual query resolution time by 25 %.",
       "Collaborated with 3 engineers to launch a SaaS product generating dynamic flashcards, boosting engagement by 15 %."
     ],
-    technologies: ['Next.js', 'LangChain', 'OpenAI API', 'Pinecone'],
-    link: 'https://headstarter.ai'
+    technologies: ['Next.js', 'LangChain', 'OpenAI API', 'Pinecone', 'React', 'RAG-Pipeline'],
+    link: 'https://headstarter.co/'
   },
   {
     title: 'Software Engineer Intern',
     company: 'Devsinc',
     location: 'Remote',
-    period: 'Summer 2022',
+    period: 'Jul 2023 - Aug 2023',
     description: [
       "Optimised an expense-management platform front-end (React), reducing page-load time by 26 %.",
       "Built a custom hash-table implementation, improving data retrieval speed by 40 %.",
       "Applied the Factory Design Pattern to standardise UI components, cutting code redundancy by 30 % and improving scalability."
     ],
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Jest'],
+    technologies: ['React', 'Node.js', 'Data Structures & Algorithms', 'Factory Design Patterns'],
     link: 'https://devsinc.com'
   },
   {
-    title: 'Software Engineering Supplemental Instructor',
+    title: 'Software Engineering Supplemental Instructor & Peer Tutor',
     company: 'University of Massachusetts Boston',
     location: 'Boston, MA',
-    period: 'Sep 2022 – Dec 2022',
+    period: 'Sep 2022 – Dec 2024',
     description: [
-      'Delivered four weekly supplemental instruction sessions to 30 students, improving course grades by 15 % in Python, OOP and Data Structures.',
-      'Provided personalised feedback on assignments, enabling students to resolve 80 % of coding errors independently.'
+      'Delivered 4 weekly supplemental sessions for ~30 students and one-on-one tutoring (~12/wk) in Python, OOP, DSA, Math, and Economics, driving a 15% improvement in overall course grades.',
+      'Enabled students to resolve 80% of coding errors independently through targeted feedback, while tracking progress in TracCloud and fostering an inclusive learning environment.'
     ],
-    technologies: ['Python', 'Teaching', 'OOP', 'Data Structures'],
+    technologies: ['Python', 'OOP', 'Data Structures', 'Teaching', 'Presenting'],
     link: 'https://umb.edu'
   }
 ]
