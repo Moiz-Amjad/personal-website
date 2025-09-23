@@ -112,7 +112,7 @@ export default function About() {
                   aria-labelledby="projects-stat"
                 >
                   <Code className="w-8 h-8 mx-auto mb-2 text-purple-600 dark:text-purple-400" aria-hidden="true" />
-                  <div className="text-2xl font-bold text-gray-900 dark:text-gray-100" aria-label="17 plus projects">25+</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-gray-100" aria-label="17 plus projects">17+</div>
                   <div id="projects-stat" className="text-sm text-gray-700 dark:text-gray-300 font-medium">Projects</div>
                 </motion.div>
                 <motion.div 

@@ -2,9 +2,21 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink, Github, Sparkles, Bot, Calculator, Users, MessageCircle, DollarSign, Receipt } from 'lucide-react'
+import { ExternalLink, Github, Sparkles, Bot, Calculator, Users, MessageCircle, DollarSign, Receipt, HeartPulse, Heart } from 'lucide-react'
 
 const projects = [
+  {
+    title: 'Heart Rate Monitor IoT System',
+    description: 'Full-stack IoT solution with ESP32, GCP, and React for real-time heart rate monitoring, signal processing, activity zones, and alert notifications with Google OAuth security',
+    tech: ['ESP32', 'React', 'Google Cloud Platform', 'Node.js', 'Google Auth', 'Next.js', 'Node.js'],
+    live: 'https://cs-410-sp-2025-hrm-3.vercel.app',
+    github: 'https://github.com/Moiz-Amjad/CS410-SP2025-HRM3 ',
+    image: '/api/placeholder/600/400',
+    icon: HeartPulse,
+    iconColor: 'text-red-500',
+    accentColor: 'from-red-500 to-pink-500',
+    secondaryIcons: [HeartPulse, Sparkles, Heart],
+  },
   {
     title: 'AI Support Bot',
     description: 'GPT-4 powered support bot with Pinecone RAG pipeline for intelligent customer assistance',
