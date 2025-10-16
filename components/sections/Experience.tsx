@@ -12,11 +12,12 @@ const experiences = [
     location: 'Boston, MA',
     period: 'Feb 2025 – Aug 2025',
     description: [
-      "Built an Admin dashboard using Next.js + TypeScript to manage LLM models and proxies, configuring Langflow pipelines and registering them in LiteLLM, reducing model onboarding time from hrs to mins.",
-      "Developed a chat platform (SPA + embeddable widget) with React and integrated Langfuse tracing into AI pipelines, improving observability & cutting debugging time by 30%.",
-      "Modernized BU's web presence by implementing Figma mock-ups into responsive, reusable WordPress components, resulting in a cohesive, faster-loading user experience and reduced development time."
+      "Integrated Langfuse tracing into LLM pipelines and configured PostgreSQL to store user history and analytics, enabling real-time monitoring of costs and usage.",
+      "Automated LLM lifecycle management by containerizing core services with Docker and utilizing Langflow to register new LiteLLM workflows, achieving 100% environment parity.",
+      "Configured MongoDB as the dedicated document store for the LibreChat component's conversation data, accelerating the retrieval of complex, unstructured chat history.",
+      "Implemented Figma mockups into reusable UI components for the Admin Dashboard using Tailwind CSS, reducing new feature development time and standardizing visual design."
     ],
-    technologies: ['LangFlow', 'LangChain', 'LangFuse', 'Docker', 'Next.js', 'Node.js', 'React', 'Figma', 'JavaScript', 'WordPress'],
+    technologies: ['Docker', 'Next.js', 'Node.js', 'PostgreSQL', 'React', 'LangFlow', 'MongoDB', 'LangFuse', 'LiteLLM', 'LiteLLM', 'JavaScript', 'Figma', 'WordPress'],
     link: 'https://www.bu.edu/sail/'
   },
   {
@@ -25,10 +26,11 @@ const experiences = [
     location: 'Boston, MA',
     period: 'Jan 2025 – Present',
     description: [
-      "Increased user satisfaction and service reliability by triaging 100+ ServiceNow requests and resolving 50+ hardware, software, and system issues, reducing downtime.",
-      "Ensured data integrity and security by managing 200+ student and faculty accounts across multiple systems and educating users on phishing prevention, leading to a 10 % reduction in incidents."
+      "Resolved 100+ ServiceNow tickets including hardware and software issues across Mac, Windows, and Linux systems sometimes requiring making/running Bash or PowerShell scripts.",
+      "Managed 15,000+ university accounts across MS Azure Services including Active Directory.",
+      "Resolved 100+ Educated users on phishing prevention, cutting successful phishing incidents by ~35%."
     ],
-    technologies: ['Bash', 'Python', 'ServiceNow', 'Azure AD'],
+    technologies: ['Bash', 'PowerShell', 'ServiceNow', 'Azure AD', 'Linux', 'Windows', 'macOS'],
     link: 'https://umb.edu'
   },
   {
@@ -37,9 +39,9 @@ const experiences = [
     location: 'Remote',
     period: 'Jul 2024 – Sep 2024',
     description: [
-      "Led development of 5 AI-driven web applications in 5 weeks, scaling them to 50+ users with a focus on performance optimisation and engagement.",
-      "Integrated a RAG pipeline (OpenAI + Pinecone) to power customer-support agents, reducing manual query resolution time by 25 %.",
-      "Collaborated with 3 engineers to launch a SaaS product generating dynamic flashcards, boosting engagement by 15 %."
+      "Led Full-Stack development of 5 AI-driven web apps in 5 weeks, leveraging Node.js/Express.js, Material UI and Google Cloud Platform (Firestore, Storage) to scale an app to 70+ users.",
+      "Engineered a Retrieval-Augmented Generation (RAG) pipeline using Python (LangChain), GPT-4o mini, and Pinecone, which increased support agent response accuracy by up to 85%",
+      "Collaborated with 3 engineers to launch a SaaS product generating dynamic flashcards, boosting engagement by 15%."
     ],
     technologies: ['Next.js', 'LangChain', 'OpenAI API', 'Pinecone', 'React', 'RAG-Pipeline'],
     link: 'https://headstarter.co/'
@@ -50,11 +52,11 @@ const experiences = [
     location: 'Remote',
     period: 'Jul 2023 - Aug 2023',
     description: [
-      "Optimised an expense-management platform front-end (React), reducing page-load time by 26 %.",
-      "Built a custom hash-table implementation, improving data retrieval speed by 40 %.",
-      "Applied the Factory Design Pattern to standardise UI components, cutting code redundancy by 30 % and improving scalability."
+      "Collaborated with a 5 member team to optimize their expense platform’s front end by integrating Node.js build tools for image compression and code splitting, cutting page load times by ~15%.",
+      "Refactored a core data module with an in-memory hash table lookup in Express.js, boosting data retrieval speed for specific high-frequency queries.",
+      "Applied the Factory Design Pattern to standardize React UI components in a module, decreasing code redundancy and improving maintainability."
     ],
-    technologies: ['React', 'Node.js', 'Data Structures & Algorithms', 'Factory Design Patterns'],
+    technologies: ['React', 'Node.js', 'Express.js', 'Data Structures & Algorithms', 'Factory Design Patterns', 'JavaScript'],
     link: 'https://devsinc.com'
   },
   {
@@ -63,10 +65,9 @@ const experiences = [
     location: 'Boston, MA',
     period: 'Sep 2022 – Dec 2024',
     description: [
-      'Delivered 4 weekly supplemental sessions for ~30 students and one-on-one tutoring (~12/wk) in Python, OOP, DSA, Math, and Economics, driving a 15% improvement in overall course grades.',
-      'Enabled students to resolve 80% of coding errors independently through targeted feedback, while tracking progress in TracCloud and fostering an inclusive learning environment.'
+      "Delivered group and one-on-one instruction sessions on OOP, DSA, Python, Java, C and Math, helping students improve their overall course grade by at least a letter grade on average."
     ],
-    technologies: ['Python', 'OOP', 'Data Structures', 'Teaching', 'Presenting'],
+    technologies: ['Python', 'Java', 'C', 'Math', 'Object Oriented Programming', 'Data Structures & Algorithms',],
     link: 'https://umb.edu'
   }
 ]

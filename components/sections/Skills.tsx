@@ -9,33 +9,33 @@ import { useTheme } from '../ThemeProvider'
 const skillCategories = [
   {
     icon: Code,
-    title: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind', 'Material UI', 'Framer Motion', 'Three.js']
-  },
-  {
-    icon: Server,
-    title: 'Backend',
-    skills: ['Node.js', 'Firebase', 'Python', 'C', 'TypeScript', 'JavaScript', 'REST APIs', 'CRUD', 'Factory Design Patterns']
-  },
-  {
-    icon: Database,
-    title: 'Database',
-    skills: ['PostgreSQL', 'MySQL', 'Supabase', 'Google Cloud Firebase', 'Pinecone']
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud & DevOps',
-    skills: ['AWS', 'GCP', 'Azure', 'Docker', 'Kubernetes', 'CI/CD', 'Vercel', 'Netlify', 'GitHub Actions']
+    title: 'Programming Languages',
+    skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'HTML', 'CSS', 'C']
   },
   {
     icon: Smartphone,
-    title: 'Mobile',
-    skills: ['React Native', 'Flutter', 'Swift']
+    title: 'Frameworks/Tools',
+    skills: ['React', 'Vue.js', 'Next.js', 'Redux', 'Tailwind CSS', 'Material UI', 'Figma']
+  },
+  {
+    icon: Database,
+    title: 'Backend & Databases',
+    skills: ['Node.js', 'Express.js', 'MySQL', 'PostgreSQL', 'MongoDB', 'Firebase', 'RESTful APIs']
   },
   {
     icon: Zap,
     title: 'AI/ML',
-    skills: ['LangFlow', 'LangFuse', 'LangChain','RAG Pipeline', 'OpenAI API', 'LiteLLM']
+    skills: ['OpenAI API', 'LangChain', 'Langflow', 'Langfuse', 'LiteLLM', 'LibreChat', 'Pinecone', 'RAG pipelines']
+  },
+  {
+    icon: Cloud,
+    title: 'Cloud & DevOps',
+    skills: ['AWS', 'GCP', 'Docker', 'Kubernetes', 'Terraform', 'Vercel', 'Bash', 'PowerShell']
+  },
+  {
+    icon: Server,
+    title: 'Developer Tools',
+    skills: ['Git/GitHub', 'GitHub Actions', 'JSON', 'Agile (Scrum/Kanban)', 'CI/CD pipelines']
   }
 ]
 
