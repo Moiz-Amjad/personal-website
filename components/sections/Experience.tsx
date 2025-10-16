@@ -27,8 +27,7 @@ const experiences = [
     period: 'Jan 2025 – Present',
     description: [
       "Resolved 100+ ServiceNow tickets including hardware and software issues across Mac, Windows, and Linux systems sometimes requiring making/running Bash or PowerShell scripts.",
-      "Managed 15,000+ university accounts across MS Azure Services including Active Directory.",
-      "Resolved 100+ Educated users on phishing prevention, cutting successful phishing incidents by ~35%."
+      "Managed 15,000+ university accounts across MS Azure Services including Active Directory."
     ],
     technologies: ['Bash', 'PowerShell', 'ServiceNow', 'Azure AD', 'Linux', 'Windows', 'macOS'],
     link: 'https://umb.edu'
@@ -40,8 +39,7 @@ const experiences = [
     period: 'Jul 2024 – Sep 2024',
     description: [
       "Led Full-Stack development of 5 AI-driven web apps in 5 weeks, leveraging Node.js/Express.js, Material UI and Google Cloud Platform (Firestore, Storage) to scale an app to 70+ users.",
-      "Engineered a Retrieval-Augmented Generation (RAG) pipeline using Python (LangChain), GPT-4o mini, and Pinecone, which increased support agent response accuracy by up to 85%",
-      "Collaborated with 3 engineers to launch a SaaS product generating dynamic flashcards, boosting engagement by 15%."
+      "Engineered a Retrieval-Augmented Generation (RAG) pipeline using Python (LangChain), GPT-4o mini, and Pinecone, which increased support agent response accuracy by up to 85%"
     ],
     technologies: ['Next.js', 'LangChain', 'OpenAI API', 'Pinecone', 'React', 'RAG-Pipeline'],
     link: 'https://headstarter.co/'
@@ -49,7 +47,7 @@ const experiences = [
   {
     title: 'Software Engineer Intern',
     company: 'Devsinc',
-    location: 'Remote',
+    location: 'Lahore, Pakistan',
     period: 'Jul 2023 - Aug 2023',
     description: [
       "Collaborated with a 5 member team to optimize their expense platform’s front end by integrating Node.js build tools for image compression and code splitting, cutting page load times by ~15%.",
@@ -106,9 +104,13 @@ export default function Experience() {
       const visibleRatio = (visibleEnd - visibleStart) / containerHeight
 
       // Show experiences based on scroll progress
+      // Calculate progress: 0 at top, 1 when fully scrolled through
+      const scrollProgress = Math.max(0, Math.min(1, visibleRatio + (containerTop < 0 ? Math.min(1, Math.abs(containerTop) / containerHeight) : 0)))
+      
+      // Progressive loading: show experiences incrementally as user scrolls
       const newVisibleCount = Math.min(
         experiences.length,
-        Math.max(1, Math.floor(visibleRatio * experiences.length * 1.8))
+        Math.max(1, Math.ceil(scrollProgress * (experiences.length + 0.5)))
       )
 
       setVisibleExperiences(prevCount => {
